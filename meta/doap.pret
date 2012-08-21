@@ -1,0 +1,23 @@
+# This file contains general metadata about the project.
+
+@prefix : <http://usefulinc.com/ns/doap#>.
+
+`MooseX-ABCD`
+	:programming-language "Perl" ;
+	:shortdesc            "MooseX::ABC, but checking required methods on make_immutable";
+	:homepage             <https://metacpan.org/release/MooseX-ABCD>;
+	:download-page        <https://metacpan.org/release/MooseX-ABCD>;
+	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue=MooseX-ABCD>;
+	:repository           [ a :HgRepository; :browse <https://bitbucket.org/tobyink/p5-moosex-abcd> ];
+	:created              2012-08-21;
+	:license              <http://dev.perl.org/licenses/>;
+	:maintainer           cpan:TOBYINK;
+	:developer            cpan:TOBYINK.
+
+<http://dev.perl.org/licenses/>
+	dc:title  "the same terms as the perl 5 programming language system itself".
+
+cpan:TOBYINK
+	foaf:name  "Toby Inkster";
+	foaf:mbox  <mailto:tobyink@cpan.org>.
+
