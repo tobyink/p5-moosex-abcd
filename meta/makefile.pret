@@ -4,5 +4,6 @@
 	perl_version_from m`MooseX::ABCD`;
 	version_from      m`MooseX::ABCD`;
 	readme_from       m`MooseX::ABCD`;
-	test_requires     p`Test::More 0.61`  .
+	requires          p`MooseX::ABC`;
+	test_requires     p`Test::More 0.61`.
 

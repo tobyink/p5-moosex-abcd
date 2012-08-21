@@ -5,6 +5,7 @@ BEGIN {
 	$MooseX::ABCD::VERSION   = '0.001';
 }
 
+use 5.008;
 use Moose 2.00 ();
 use MooseX::ABC 0.06 ();
 use Moose::Exporter;
