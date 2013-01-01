@@ -23,6 +23,12 @@ use warnings;
 use Test::More;
 use Test::Fatal;
 
+my $xyz;
+$xyz = q{
+	use Test::Pod;
+	use Test::Pod::Coverage;
+};
+
 {
     package Foo;
     use Moose;
