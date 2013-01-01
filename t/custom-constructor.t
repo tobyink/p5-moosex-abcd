@@ -22,7 +22,7 @@ our $custom_constructor_called = 0;
     sub bar { }
     sub baz { }
     sub new { $::custom_constructor_called++; shift->SUPER::new(@_) }
-    __PACKAGE__->meta->make_immutable;
+    __PACKAGE__->meta->make_immutable(inline_constructor => 0);
 }
 
 my $foosub = Foo::Sub->new;
