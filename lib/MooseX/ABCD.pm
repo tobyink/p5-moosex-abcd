@@ -7,13 +7,14 @@ no warnings qw[ void once uninitialized numeric ];
 
 BEGIN {
 	$MooseX::ABCD::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::ABCD::VERSION   = '0.001';
+	$MooseX::ABCD::VERSION   = '0.002';
 }
 
 use Carp;
 use Moose 2.00 ();
 use MooseX::ABC 0.06 ();
 use Moose::Exporter;
+use namespace::autoclean;
 
 # More imports
 BEGIN {

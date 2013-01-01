@@ -4,3 +4,9 @@
 	issued  2012-08-21;
 	label   "Initial release".
 
+`MooseX-ABCD 0.002 cpan:TOBYINK`
+	issued  2013-01-01;
+	changeset [
+		item "General tidy up."^^Change;
+		item "Document test suite."^^Documentation;
+	].
