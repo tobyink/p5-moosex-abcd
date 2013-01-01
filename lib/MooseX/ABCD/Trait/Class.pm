@@ -1,9 +1,14 @@
 package MooseX::ABCD::Trait::Class;
 
+use 5.008;
+use strict;
+use warnings FATAL => qw[ all ];
+no warnings qw[ void once uninitialized numeric ];
+
 BEGIN {
 	$MooseX::ABCD::Trait::Class::AUTHORITY = 'cpan:TOBYINK';
 	$MooseX::ABCD::Trait::Class::VERSION   = '0.001';
-}
+};
 
 use Moose::Role;
  
@@ -67,7 +72,7 @@ around _immutable_options => sub
 	# we know that the base class has at least our base class role applied,
 	# so it's safe to replace it if there is only one wrapper.
 	elsif ($constructor->isa('Class::MOP::Method::Wrapped')
-	&& $constructor->get_original_method == Class::MOP::class_of('Moose::Object')->get_method('new'))
+	and $constructor->get_original_method == Class::MOP::class_of('Moose::Object')->get_method('new'))
 	{
 		push @options, replace_constructor => 1;
 	}
@@ -82,3 +87,4 @@ around _immutable_options => sub
 };
  
 no Moose::Role ;;; "Yeah, baby, yeah!"
+

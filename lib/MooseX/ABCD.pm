@@ -1,18 +1,31 @@
 package MooseX::ABCD;
 
+use 5.008;
+use strict;
+use warnings FATAL => qw[ all ];
+no warnings qw[ void once uninitialized numeric ];
+
 BEGIN {
 	$MooseX::ABCD::AUTHORITY = 'cpan:TOBYINK';
 	$MooseX::ABCD::VERSION   = '0.001';
 }
 
-use 5.008;
+use Carp;
 use Moose 2.00 ();
 use MooseX::ABC 0.06 ();
 use Moose::Exporter;
 
+# More imports
+BEGIN {
+	*class_of               = \&Class::MOP::class_of;
+	*apply_base_class_roles = \&Moose::Util::MetaRole::apply_base_class_roles;
+	*apply_metaroles        = \&Moose::Util::MetaRole::apply_metaroles;
+};
+
 sub requires
 {
-	shift->add_required_method(@_);
+	my $self = shift;
+	$self->add_required_method(@_);
 }
  
 Moose::Exporter->setup_import_methods(
@@ -22,21 +35,22 @@ Moose::Exporter->setup_import_methods(
 sub init_meta
 {
 	my ($package, %options) = @_;
-
-	Carp::confess("Can't make a role into an abstract base class")
-		if Class::MOP::class_of($options{for_class})->isa('Moose::Meta::Role');
-
-	Moose::Util::MetaRole::apply_metaroles(
-		for             => $options{for_class},
+	my $for = $options{for_class};
+	
+	confess("Can't make a role into an abstract base class")
+		if class_of($for)->isa('Moose::Meta::Role');
+	
+	apply_metaroles(
+		for             => $for,
 		class_metaroles => { class => ['MooseX::ABCD::Trait::Class'] },
 	);
-	Moose::Util::MetaRole::apply_base_class_roles(
-		for   => $options{for_class},
+	apply_base_class_roles(
+		for   => $for,
 		roles => ['MooseX::ABC::Role::Object'],
 	);
-
-	Class::MOP::class_of($options{for_class})->is_abstract(1);
-	return Class::MOP::class_of($options{for_class});
+	
+	class_of($for)->is_abstract(1);
+	return class_of($for);
 }
   
 1;
@@ -49,34 +63,34 @@ MooseX::ABCD - MooseX::ABC, but checking required methods on make_immutable
 
 =head1 SYNOPSIS
 
-	{
-		package Shape;
-		use Moose;
-		use MooseX::ABCD;
-		requires 'draw';
-		__PACKAGE__->meta->make_immutable;
-	}
-	
-	{
-		package Circle;
-		use Moose;
-		extends 'Shape';
-		sub draw {
-			...;
-		}
-		__PACKAGE__->meta->make_immutable;
-	}
-	
-	my $shape  = Shape->new;   # dies
-	my $circle = Circle->new;  # succeeds
-	
-	{
-		package Square;
-		use Moose;
-		extends 'Shape';
-		__PACKAGE__->meta->make_immutable;
-		# ^^^ dies, draw is unimplemented
-	}
+   {
+      package Shape;
+      use Moose;
+      use MooseX::ABCD;
+      requires 'draw';
+      __PACKAGE__->meta->make_immutable;
+   }
+   
+   {
+      package Circle;
+      use Moose;
+      extends 'Shape';
+      sub draw {
+         ...;
+      }
+      __PACKAGE__->meta->make_immutable;
+   }
+   
+   my $shape  = Shape->new;   # dies
+   my $circle = Circle->new;  # succeeds
+   
+   {
+      package Square;
+      use Moose;
+      extends 'Shape';
+      __PACKAGE__->meta->make_immutable;
+      # ^^^ dies, draw is unimplemented
+   }
 
 =head1 DESCRIPTION
 
@@ -126,7 +140,7 @@ matter, don't blame me either - take a look at the disclaimer of warranties.)
 
 =head1 COPYRIGHT AND LICENCE
 
-This software is copyright (c) 2012 by Toby Inkster.
+This software is copyright (c) 2012-2013 by Toby Inkster.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
