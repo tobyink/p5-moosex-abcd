@@ -8,7 +8,7 @@
 	:homepage             <https://metacpan.org/release/MooseX-ABCD>;
 	:download-page        <https://metacpan.org/release/MooseX-ABCD>;
 	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue=MooseX-ABCD>;
-	:repository           [ a :HgRepository; :browse <https://bitbucket.org/tobyink/p5-moosex-abcd> ];
+	:repository           [ a :GitRepository; :browse <https://github.com/tobyink/p5-moosex-abcd> ];
 	:created              2012-08-21;
 	:license              <http://dev.perl.org/licenses/>;
 	:maintainer           cpan:TOBYINK;
