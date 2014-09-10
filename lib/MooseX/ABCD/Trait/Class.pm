@@ -7,7 +7,7 @@ no warnings qw[ void once uninitialized numeric ];
 
 BEGIN {
 	$MooseX::ABCD::Trait::Class::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::ABCD::Trait::Class::VERSION   = '0.002';
+	$MooseX::ABCD::Trait::Class::VERSION   = '0.003';
 };
 
 use Moose::Role;

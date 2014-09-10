@@ -7,7 +7,7 @@ no warnings qw[ void once uninitialized numeric ];
 
 BEGIN {
 	$MooseX::ABCD::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::ABCD::VERSION   = '0.002';
+	$MooseX::ABCD::VERSION   = '0.003';
 }
 
 use Carp;

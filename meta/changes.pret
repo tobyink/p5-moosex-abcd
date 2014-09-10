@@ -10,3 +10,10 @@
 		item "General tidy up."^^Change;
 		item "Document test suite."^^Documentation;
 	].
+
+`MooseX-ABCD 0.003 cpan:TOBYINK`
+	issued    2014-09-10;
+	changeset [
+		item "Switch to Dist::Inkt."^^Packaging;
+	].
+
