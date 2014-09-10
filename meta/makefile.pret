@@ -1,0 +1,8 @@
+@prefix deps:  <http://ontologi.es/doap-deps#> .
+
+<http://purl.org/NET/cpan-uri/dist/MooseX-ABCD/project>
+	deps:runtime-requirement         [ deps:on "MooseX::ABC"^^deps:CpanId ];
+	deps:runtime-requirement         [ deps:on "namespace::autoclean"^^deps:CpanId ];
+	deps:test-requirement            [ deps:on "Test::More 0.61"^^deps:CpanId ];
+	deps:test-requirement            [ deps:on "Test::Fatal"^^deps:CpanId ].
+
